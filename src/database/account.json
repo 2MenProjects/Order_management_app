@@ -1,0 +1,12 @@
+[
+    {
+        "tenTaiKhoan": "user1",
+        "matKhau":"abcde",
+        "loaiTaiKhoan":"admin"
+    },
+    {
+        "tenTaiKhoan": "admin",
+        "matKhau":"1234",
+        "loaiTaiKhoan":"admin"
+    }
+]

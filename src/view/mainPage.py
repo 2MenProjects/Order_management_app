@@ -10,7 +10,16 @@ class MainPage:
         # Create the main window
         root = Tk()
         root.title("Home")
-        root.geometry('1225x650+50+10')
+
+        WIDTH = 1225
+        HEIGHT = 650
+
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+
+        x = int((screen_width - WIDTH) / 2)
+        y = int((screen_height - HEIGHT) / 2)
+        root.geometry(f"{WIDTH}x{HEIGHT}+{x}+{y}")
         root.configure(bg="#fff")
         root.resizable(False, False)
         # Main

@@ -10,7 +10,16 @@ def start_login():
     win.title("Login")
     icon = PhotoImage(file="src/image/warehouse.png")
     win.iconphoto(True, icon)
-    win.geometry('925x500')
+
+    WIDTH = 925
+    HEIGHT = 500
+
+    screen_width = win.winfo_screenwidth()
+    screen_height = win.winfo_screenheight()
+
+    x = int((screen_width - WIDTH) / 2)
+    y = int((screen_height - HEIGHT) / 2)
+    win.geometry(f"{WIDTH}x{HEIGHT}+{x}+{y}")
     win.configure(bg="#fff")
     win.resizable(False, False)
 

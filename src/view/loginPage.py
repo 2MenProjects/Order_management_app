@@ -3,9 +3,14 @@ from tkinter import messagebox
 import subprocess
 from src.view.mainPage import MainPage as mainPage
 import json
+import hashlib
+import os
+from src.Model.NhanVien import NhanVien
 
 
 def start_login():
+    filename = "src/database/account.json"
+
     win = Tk()
     win.title("Login")
     icon = PhotoImage(file="src/image/warehouse.png")
@@ -66,9 +71,34 @@ def start_login():
     Frame(frame, width=295, height=2, bg="black").place(x=25, y=177)
     # ----------------------------------------------------------------
 
+    def hash_password(password):
+        return hashlib.sha256(password.encode("utf-8")).hexdigest()
+
+    def load_data_from_file(filename):
+        if not os.path.exists(filename):
+            data = []
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+        else:
+            try:
+                with open(filename, "r", encoding="utf-8") as file:
+                    data = json.load(file)
+            except (json.JSONDecodeError, FileNotFoundError):
+                data = []
+
+        if not data:
+            admin = NhanVien("admin", "admin", "1234", "admin")
+
+            data.append(admin.to_dict())
+
+            with open(filename, "w", encoding="utf-8") as file:
+                json.dump(data, file, ensure_ascii=False, indent=4)
+        return data
+
+    load_data_from_file(filename)
+
     def signIn():
         username = user.get()
-        password = passwordBox.get()
+        password = hash_password(passwordBox.get())
         with open("src/database/account.json", "r") as open_file:
             data = json.load(open_file)
             flag = 0

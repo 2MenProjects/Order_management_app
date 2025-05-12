@@ -10,7 +10,7 @@ class MainPage:
         # Create the main window
         root = Tk()
         root.title("Home")
-        root.geometry('1225x650+50+10')
+        root.geometry('1325x700+30+10')
         root.configure(bg="#fff")
         root.resizable(False, False)
         # Main
@@ -56,7 +56,7 @@ class MainPage:
         def home_Page():
             homePage = Frame(mainPageFrame)
             packagePage(homePage)
-            homePage.pack(fill=BOTH, expand=True)
+            homePage.pack(fill=BOTH)
             homePage.bind("<Button-1>", lambda e: fold_MenuBar())
 
         def account_Page():
@@ -100,7 +100,8 @@ class MainPage:
 
         # Toggle sidemenu
         mainPageFrame = Frame(root)
-        mainPageFrame.place(relwidth=1.0, relheight=1.0, x=45)
+        # mainPageFrame.pack(side="right",fill="y")
+        mainPageFrame.place(x=45,y=0, width=1280, height=700)
         mainPageFrame.bind("<Button-1>", lambda e: fold_MenuBar())
         menuBarFrame = Frame(root, bg="#383838")
 
@@ -121,7 +122,7 @@ class MainPage:
         home_Btn_Indicator.place(x=3, y=130, height=40, width=3)
 
         home_Page_Label = Label(menuBarFrame, bg=menuBarColor,
-                                text="Home", fg="White", font=("Bold", 15), anchor=W)
+                                text="Đơn hàng", fg="White", font=("Bold", 15), anchor=W)
         home_Page_Label.place(x=45, y=130, width=100, height=40)
         home_Page_Label.bind(
             "<Button-1>", lambda e: switch_Indication(home_Btn_Indicator, home_Page))
@@ -135,7 +136,7 @@ class MainPage:
         account_Btn_Indicator.place(x=3, y=190, height=40, width=3)
 
         account_Page_Label = Label(
-            menuBarFrame, bg=menuBarColor, text="Account", fg="White", font=("Bold", 15), anchor=W)
+            menuBarFrame, bg=menuBarColor, text="Tài khoản", fg="White", font=("Bold", 15), anchor=W)
         account_Page_Label.place(x=45, y=190, width=100, height=40)
         account_Page_Label.bind(
             "<Button-1>", lambda e: switch_Indication(account_Btn_Indicator, account_Page))
@@ -149,8 +150,8 @@ class MainPage:
         delivery_Btn_Indicator.place(x=3, y=250, height=40, width=3)
 
         delivery_Page_Label = Label(
-            menuBarFrame, bg=menuBarColor, text="Delivery", fg="White", font=("Bold", 15), anchor=W)
-        delivery_Page_Label.place(x=45, y=250, width=100, height=40)
+            menuBarFrame, bg=menuBarColor, text="Vận chuyển", fg="White", font=("Bold", 15), anchor=W)
+        delivery_Page_Label.place(x=45, y=250, width=110, height=40)
         delivery_Page_Label.bind(
             "<Button-1>", lambda e: switch_Indication(delivery_Btn_Indicator, delivery_Page))
 
@@ -189,5 +190,3 @@ class MainPage:
         menuBarFrame.configure(width=45)
 
         root.mainloop()
-
-# mainPage = MainPage()

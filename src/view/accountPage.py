@@ -4,7 +4,6 @@ import json
 import os
 from src.Model.NhanVien import NhanVien
 
-
 class AccountPage:
     def __init__(self, root):
         self.root = root

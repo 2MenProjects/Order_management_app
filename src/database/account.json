@@ -1,14 +1,26 @@
 [
     {
-        "tenTaiKhoan": "user1",
-        "tenNguoiDung": "admin1",
-        "matKhau": "abcde",
+        "tenTaiKhoan": "admin",
+        "tenNguoiDung": "admin",
+        "matKhau": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
         "loaiTaiKhoan": "admin"
     },
     {
-        "tenTaiKhoan": "admin",
-        "tenNguoiDung": "admin2",
-        "matKhau": "1234",
+        "tenTaiKhoan": "user1",
+        "tenNguoiDung": "user1",
+        "matKhau": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
         "loaiTaiKhoan": "admin"
+    },
+    {
+        "tenTaiKhoan": "user2",
+        "tenNguoiDung": "user2",
+        "matKhau": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "loaiTaiKhoan": "user"
+    },
+    {
+        "tenTaiKhoan": "user3",
+        "tenNguoiDung": "user3",
+        "matKhau": "6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918",
+        "loaiTaiKhoan": "user"
     }
 ]

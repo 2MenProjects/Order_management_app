@@ -6,7 +6,6 @@ from src.Model.NhanVien import NhanVien
 from tkinter import messagebox as mb
 import hashlib
 
-
 class AccountPage:
     def __init__(self, root):
         self.root = root

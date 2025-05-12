@@ -6,6 +6,7 @@ from src.Model.NhanVien import NhanVien
 from tkinter import messagebox as mb
 import hashlib
 
+
 class AccountPage:
     def __init__(self, root):
         self.root = root
@@ -353,7 +354,7 @@ class AccountPage:
         # Username
         self.lbl_username = Label(
             self.frame_entries, text="Tên tài khoản: ", width=15, font=("Arial", 13))
-        self.lbl_username.grid(row=0, column=0, padx=10, pady=10)
+        self.lbl_username.grid(row=0, column=0, padx=10, pady=8)
         self.entry_username = Entry(
             self.frame_entries,
             width=20,
@@ -364,12 +365,12 @@ class AccountPage:
             highlightthickness=2,
             highlightcolor="blue",
             state="readonly")  # ko cho người dùng gõ vào
-        self.entry_username.grid(row=0, column=1, padx=10, pady=10)
+        self.entry_username.grid(row=0, column=1, padx=10, pady=8)
 
         # Tên người dùng
         self.lbl_fullname = Label(
             self.frame_entries, text="Tên người dùng: ", width=15, font=("Arial", 13))
-        self.lbl_fullname.grid(row=1, column=0, padx=10, pady=10)
+        self.lbl_fullname.grid(row=1, column=0, padx=10, pady=8)
         self.entry_fullname = Entry(
             self.frame_entries,
             width=20,
@@ -380,12 +381,12 @@ class AccountPage:
             highlightthickness=2,
             highlightcolor="blue",
             state="readonly")
-        self.entry_fullname.grid(row=1, column=1, padx=10, pady=10)
+        self.entry_fullname.grid(row=1, column=1, padx=10, pady=8)
 
         # Mật khẩu
         self.lbl_password = Label(
             self.frame_entries, text="Mật khẩu: ", width=15, font=("Arial", 13))
-        self.lbl_password.grid(row=2, column=0, padx=10, pady=10)
+        self.lbl_password.grid(row=2, column=0, padx=10, pady=8)
         self.entry_password = Entry(
             self.frame_entries,
             width=20,
@@ -396,12 +397,12 @@ class AccountPage:
             highlightthickness=2,
             highlightcolor="blue",
             state="readonly")
-        self.entry_password.grid(row=2, column=1, padx=10, pady=10)
+        self.entry_password.grid(row=2, column=1, padx=10, pady=8)
 
         # Role
         self.lbl_role = Label(
             self.frame_entries, text="Loại tài khoản: ", width=15, font=("Arial", 13))
-        self.lbl_role.grid(row=3, column=0, padx=10, pady=10)
+        self.lbl_role.grid(row=3, column=0, padx=10, pady=8)
         self.entry_role = ttk.Combobox(
             self.frame_entries,
             width=20,
@@ -409,7 +410,7 @@ class AccountPage:
             state="disabled",  # ko cho người dùng bấm vào
             values=["admin", "user"])
         self.entry_role.current(1)  # mặc định là user
-        self.entry_role.grid(row=3, column=1, padx=10, pady=10)
+        self.entry_role.grid(row=3, column=1, padx=10, pady=8)
 
     def load_data_from_file(self, filename):
         """

@@ -1,0 +1,72 @@
+[
+    {
+        "maTaiXe": "TX0000000001",
+        "tenTaiXe": "Phạm Minh Nhật",
+        "soDienThoai": "0770770987",
+        "diaChi": "254 nvc",
+        "cccd": "079203001100",
+        "nganHang": "ACB",
+        "stk_nganHang": "23900017",
+        "luongCoBan": 25000
+    },
+    {
+        "maTaiXe": "TX4079038869",
+        "tenTaiXe": "Trần Gia Bảo",
+        "soDienThoai": "0767871234",
+        "diaChi": "",
+        "cccd": "079203001122",
+        "nganHang": "",
+        "stk_nganHang": "",
+        "luongCoBan": 20000
+    },
+    {
+        "maTaiXe": "TX8252086720",
+        "tenTaiXe": "Đặng Hoàng Phúc",
+        "soDienThoai": "0888003341",
+        "diaChi": "",
+        "cccd": "079203000090",
+        "nganHang": "",
+        "stk_nganHang": "",
+        "luongCoBan": 20000
+    },
+    {
+        "maTaiXe": "TX7558957060",
+        "tenTaiXe": "PMN",
+        "soDienThoai": "0775987121",
+        "diaChi": "",
+        "cccd": "079203009909",
+        "nganHang": "",
+        "stk_nganHang": "",
+        "luongCoBan": 20000
+    },
+    {
+        "maTaiXe": "TX0360962777",
+        "tenTaiXe": "Nhật",
+        "soDienThoai": "0775922123",
+        "diaChi": "",
+        "cccd": "079203001123",
+        "nganHang": "ACB",
+        "stk_nganHang": "23900017",
+        "luongCoBan": 20000
+    },
+    {
+        "maTaiXe": "TX5454204844",
+        "tenTaiXe": "Đinh Toàn K",
+        "soDienThoai": "0778998123",
+        "diaChi": "233",
+        "cccd": "079203008800",
+        "nganHang": "ACB",
+        "stk_nganHang": "23911111",
+        "luongCoBan": 20000
+    },
+    {
+        "maTaiXe": "TX9995948613",
+        "tenTaiXe": "Phạm Minh Tuấn",
+        "soDienThoai": "0775951212",
+        "diaChi": "4001 ND",
+        "cccd": "079203003340",
+        "nganHang": "",
+        "stk_nganHang": "",
+        "luongCoBan": 25000
+    }
+]

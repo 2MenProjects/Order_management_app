@@ -1,14 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
 import subprocess
-from src.view.mainPage import MainPage as mainPage
+# from src.view.mainPage import MainPage as mainPage
 import json
 import hashlib
 import os
 from src.Model.NhanVien import NhanVien
 
 
-def start_login():
+def start_login(on_login_success=None):
     filename = "src/database/account.json"
 
     win = Tk()
@@ -99,28 +99,29 @@ def start_login():
     def signIn():
         username = user.get()
         password = hash_password(passwordBox.get())
-        with open("src/database/account.json", "r") as open_file:
-            data = json.load(open_file)
-            flag = 0
-            for line in data:
-                if line["tenTaiKhoan"] == username and line["matKhau"] == password:
-                    win.destroy()
-                    mainPage()  # Open Home Page
-                    flag = 1
-                    break
-            if flag == 0:
+        try:
+            with open("src/database/account.json", "r", encoding="utf-8") as open_file:
+                data = json.load(open_file)
+                for line in data:
+                    if line["tenTaiKhoan"] == username and line["matKhau"] == password:
+                        win.destroy()
+                        if on_login_success:
+                            on_login_success(line["loaiTaiKhoan"])
+                        return
                 messagebox.showerror("Error", "Invalid credentials!")
-            # if data["name"] == username and data["password"] == password:
-            #     win.destroy()
-            #     homePage.HomePage()  # Open Home Page
-            # else:
-            #     messagebox.showerror("Error","Invalid credentials!")
-            # if username == "admin" and password == "1234":
-            #     #subprocess.Popen(["python", "homePage.py"])
-            #     win.destroy()
-            #     homePage.HomePage()  # Open Home Page
-            # else:
-            #     messagebox.showerror("Error","Invalid credentials!")
+                # if data["name"] == username and data["password"] == password:
+                #     win.destroy()
+                #     homePage.HomePage()  # Open Home Page
+                # else:
+                #     messagebox.showerror("Error","Invalid credentials!")
+                # if username == "admin" and password == "1234":
+                #     #subprocess.Popen(["python", "homePage.py"])
+                #     win.destroy()
+                #     homePage.HomePage()  # Open Home Page
+                # else:
+                #     messagebox.showerror("Error","Invalid credentials!")
+        except Exception as e:
+            messagebox.showerror("Lỗi", f"Lỗi: {e}")
 
     signInBtn = Button(frame, width=39, pady=7, text="Sign in", bg="#57a1f8",
                        fg="white", border=0, command=signIn, default='active')

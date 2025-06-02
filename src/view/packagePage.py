@@ -553,7 +553,7 @@ class HomePage:
             sanPham_table.tag_configure("oddrow", background="#f0f0f0")
             sanPham_table.tag_configure("evenrow", background="#ffffff")
             sanPham_scrollbar = ttk.Scrollbar(sanPham_table_frame, orient="vertical", command=sanPham_table.yview)
-            sanPham_table.configure(yscroll=scrollbar.set)
+            sanPham_table.configure(yscroll=sanPham_scrollbar.set)
             sanPham_scrollbar.pack(side="right", fill="y")
             sanPham_table.pack(fill="both", expand=TRUE)
             load_data_sanPham()
@@ -655,9 +655,11 @@ class HomePage:
 
         packageTable.tag_configure("oddrow", background="#f0f0f0")
         packageTable.tag_configure("evenrow", background="#ffffff")
-        scrollbar = ttk.Scrollbar(table_frame, orient="vertical", command=packageTable.yview)
-        packageTable.configure(yscroll=scrollbar.set)
-        scrollbar.pack(side="right", fill="y")
+        scrollbar_y = ttk.Scrollbar(table_frame, orient="vertical", command=packageTable.yview)
+        scrollbar_x = ttk.Scrollbar(table_frame, orient="horizontal", command=packageTable.xview)
+        packageTable.configure(yscroll=scrollbar_y.set, xscroll=scrollbar_x.set)
+        scrollbar_y.pack(side="right", fill="y")
+        scrollbar_x.pack(side="bottom", fill="x")
         packageTable.pack(fill="both", expand=TRUE)
 
         load_data()        

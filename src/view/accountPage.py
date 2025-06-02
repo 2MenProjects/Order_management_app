@@ -61,7 +61,6 @@ class AccountPage:
                 if nd_timkiem != "":
                     if str(user["tenTaiKhoan"]) == nd_timkiem or str(user["tenNguoiDung"]) == nd_timkiem or str(user["matKhau"]) == nd_timkiem or str(user["loaiTaiKhoan"]) == nd_timkiem:
                         self.user_timkiem.append(user)
-
                 else:
                     self.user_timkiem.append(user)
 

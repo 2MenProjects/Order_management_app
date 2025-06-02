@@ -28,22 +28,31 @@ class Detail_EmployeePage:
 
         self.dataLich = self.load_detail_employee(self.filename)
 
-        hoten, luongCoBan, chucVu = self.get_ten_nhan_vien_va_luong_co_ban_va_chuc_vu(maNhanVien)
+        hoten, luongCoBan, chucVu = self.get_ten_nhan_vien_va_luong_co_ban_va_chuc_vu(
+            maNhanVien)
 
         frame_title = Frame(self.root, bg="#f0f4f8")
         frame_title.grid(row=0, column=0, sticky="w", padx=10, pady=10)
 
-        Label(frame_title, text="Mã nhân viên: ", font=("Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
-        Label(frame_title, text=maNhanVien, font=("Arial", 13), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text="Mã nhân viên: ", font=(
+            "Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text=maNhanVien, font=(
+            "Arial", 13), bg="#f0f4f8").pack(side=LEFT)
 
-        Label(frame_title, text=" - Họ tên: ", font=("Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
-        Label(frame_title, text=hoten, font=("Arial", 13), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text=" - Họ tên: ",
+              font=("Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text=hoten, font=(
+            "Arial", 13), bg="#f0f4f8").pack(side=LEFT)
 
-        Label(frame_title, text=" - Lương cơ bản: ", font=("Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
-        Label(frame_title, text=f"{luongCoBan}/h", font=("Arial", 13), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text=" - Lương cơ bản: ",
+              font=("Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text=f"{luongCoBan}/h",
+              font=("Arial", 13), bg="#f0f4f8").pack(side=LEFT)
 
-        Label(frame_title, text=" - Chức vụ: ", font=("Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
-        Label(frame_title, text=f"{chucVu}", font=("Arial", 13), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text=" - Chức vụ: ",
+              font=("Arial", 13, "bold"), bg="#f0f4f8").pack(side=LEFT)
+        Label(frame_title, text=f"{chucVu}", font=(
+            "Arial", 13), bg="#f0f4f8").pack(side=LEFT)
 
         today = datetime.now()
         nam_hien_tai = today.year
@@ -83,7 +92,7 @@ class Detail_EmployeePage:
             for tx in dataDriver:
                 if tx["maTaiXe"] == maNhanVien:
                     return (tx["tenTaiXe"], tx["luongCoBan"], "Nhân viên giao hàng")
-                
+
             return "Không tìm thấy"
         except Exception as e:
             mb.showerror("Lỗi", f"Lỗi đọc file driver: {e}")
@@ -162,19 +171,22 @@ class Detail_EmployeePage:
                     ngay_str, thu, gioLam = row
                     if ngay_str is None or thu is None:
                         continue
-                    
+
                     if isinstance(ngay_str, datetime):
                         ngay = ngay_str
                     elif isinstance(ngay_str, date):
                         ngay = datetime.combine(ngay_str, datetime.min.time())
                     elif isinstance(ngay_str, str):
                         try:
-                            ngay = datetime.strptime(ngay_str.strip(), "%d/%m/%Y")
+                            ngay = datetime.strptime(
+                                ngay_str.strip(), "%d/%m/%Y")
                         except ValueError:
-                            mb.showerror("Lỗi định dạng", f"Ngày không đúng định dạng dd/mm/yyyy: {ngay_str}")
+                            mb.showerror(
+                                "Lỗi định dạng", f"Ngày không đúng định dạng dd/mm/yyyy: {ngay_str}")
                             continue
                     else:
-                        mb.showerror("Lỗi dữ liệu", f"Không xác định kiểu dữ liệu của ngày: {ngay_str}")
+                        mb.showerror(
+                            "Lỗi dữ liệu", f"Không xác định kiểu dữ liệu của ngày: {ngay_str}")
                         continue
 
                     self.thang = ngay.month
@@ -184,7 +196,8 @@ class Detail_EmployeePage:
                         if gioLam is None:
                             int_gio_lam = 0
                         elif isinstance(gioLam, str):
-                            int_gio_lam = int(gioLam.strip()) if gioLam.strip().isdigit() else 0
+                            int_gio_lam = int(
+                                gioLam.strip()) if gioLam.strip().isdigit() else 0
                         else:
                             int_gio_lam = int(gioLam)
                     except ValueError:
@@ -226,18 +239,12 @@ class Detail_EmployeePage:
             except Exception as e:
                 mb.showerror("Lỗi", f"Đã xảy ra lỗi khi đọc file:\n{e}")
 
-        def xuat_excel():
-            pass
-
         self.frame_buttons = Frame(self.frame_left)
         self.frame_buttons.grid(row=0, column=0, sticky="news")
-        self.btn_xuat_excel = Button(self.frame_buttons, text="Xuất file Excel", width=15, height=2, font=(
-            "Arial", 13, "bold"), bg="#00B050", fg="white", state="normal", command=xuat_excel)
-        self.btn_xuat_excel.grid(row=0, column=0, padx=10, pady=5)
 
         self.btn_nhap_excel = Button(self.frame_buttons, text="Nhập file Excel", width=15, height=2, font=(
             "Arial", 13, "bold"), bg="#00B050", fg="white", state="normal", command=nhap_excel)
-        self.btn_nhap_excel.grid(row=0, column=1, padx=10, pady=5)
+        self.btn_nhap_excel.grid(row=0, column=0, padx=10, pady=5)
 
     def create_frame_sl_gio_lam(self):
         self.frame_tong_gio_lam = Frame(self.frame_duoi_table)
@@ -258,7 +265,8 @@ class Detail_EmployeePage:
         thang = int(self.cbo_Thang.get().replace("Tháng ", ""))
         nam = int(self.cbo_Nam.get().replace("Năm ", ""))
 
-        lich_day_du = self.get_schedule_for_employee(self.maNhanVien, self.dataLich)
+        lich_day_du = self.get_schedule_for_employee(
+            self.maNhanVien, self.dataLich)
 
         lich_loc = []
 

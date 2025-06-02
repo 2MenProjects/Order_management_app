@@ -51,15 +51,14 @@ class MainPage:
 
         def extending_Animation():
             current = menuBarFrame.winfo_width()
-            if not current > 200:
-                menuBarFrame.config(width=current)
+            if current < 230:
+                menuBarFrame.config(width=current + 15)
                 root.after(8, extending_Animation)
 
         def folding_Animation():
             currentWidthMenuBar = menuBarFrame.winfo_width()
-            if currentWidthMenuBar != 45:
-                currentWidthMenuBar -= 10
-                menuBarFrame.config(width=currentWidthMenuBar)
+            if currentWidthMenuBar > 45:
+                menuBarFrame.config(width=currentWidthMenuBar - 15)
                 root.after(8, folding_Animation)
 
         def extend_MenuBar():
@@ -176,7 +175,7 @@ class MainPage:
 
             lbl = Label(menuBarFrame, bg=menuBarColor, text=name,
                         fg="White", font=("Bold", 15), anchor=W)
-            lbl.place(x=45, y=y_pos, width=110, height=40)
+            lbl.place(x=45, y=y_pos, width=150, height=40)
             lbl.bind("<Button-1>", lambda e, i=indicator,
                      f=func: switch_Indication(i, f))
             y_pos += 60

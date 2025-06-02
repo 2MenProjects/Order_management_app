@@ -1,0 +1,635 @@
+[
+    {
+        "maNhanVien": "TX0000000001",
+        "Nam": 2025,
+        "Thang": 5,
+        "lichLamViec": [
+            {
+                "ngay": 1,
+                "thu": "Thứ Năm",
+                "gioLam": 8
+            },
+            {
+                "ngay": 2,
+                "thu": "Thứ Sáu",
+                "gioLam": 5
+            },
+            {
+                "ngay": 3,
+                "thu": "Thứ Bảy",
+                "gioLam": 5
+            },
+            {
+                "ngay": 4,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 5,
+                "thu": "Thứ Hai",
+                "gioLam": 0
+            },
+            {
+                "ngay": 6,
+                "thu": "Thứ Ba",
+                "gioLam": 5
+            },
+            {
+                "ngay": 7,
+                "thu": "Thứ Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 8,
+                "thu": "Thứ Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 9,
+                "thu": "Thứ Sáu",
+                "gioLam": 8
+            },
+            {
+                "ngay": 10,
+                "thu": "Thứ Bảy",
+                "gioLam": 5
+            },
+            {
+                "ngay": 11,
+                "thu": "Chủ nhật",
+                "gioLam": 0
+            },
+            {
+                "ngay": 12,
+                "thu": "Thứ Hai",
+                "gioLam": 0
+            },
+            {
+                "ngay": 13,
+                "thu": "Thứ Ba",
+                "gioLam": 8
+            },
+            {
+                "ngay": 14,
+                "thu": "Thứ Tư",
+                "gioLam": 5
+            },
+            {
+                "ngay": 15,
+                "thu": "Thứ Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 16,
+                "thu": "Thứ Sáu",
+                "gioLam": 13
+            },
+            {
+                "ngay": 17,
+                "thu": "Thứ Bảy",
+                "gioLam": 0
+            },
+            {
+                "ngay": 18,
+                "thu": "Chủ nhật",
+                "gioLam": 13
+            },
+            {
+                "ngay": 19,
+                "thu": "Thứ Hai",
+                "gioLam": 5
+            },
+            {
+                "ngay": 20,
+                "thu": "Thứ Ba",
+                "gioLam": 8
+            },
+            {
+                "ngay": 21,
+                "thu": "Thứ Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 22,
+                "thu": "Thứ Năm",
+                "gioLam": 5
+            },
+            {
+                "ngay": 23,
+                "thu": "Thứ Sáu",
+                "gioLam": 5
+            },
+            {
+                "ngay": 24,
+                "thu": "Thứ Bảy",
+                "gioLam": 0
+            },
+            {
+                "ngay": 25,
+                "thu": "Chủ nhật",
+                "gioLam": 0
+            },
+            {
+                "ngay": 26,
+                "thu": "Thứ Hai",
+                "gioLam": 0
+            },
+            {
+                "ngay": 27,
+                "thu": "Thứ Ba",
+                "gioLam": 8
+            },
+            {
+                "ngay": 28,
+                "thu": "Thứ Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 29,
+                "thu": "Thứ Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 30,
+                "thu": "Thứ Sáu",
+                "gioLam": 5
+            },
+            {
+                "ngay": 31,
+                "thu": "Thứ Bảy",
+                "gioLam": 0
+            }
+        ]
+    },
+    {
+        "maNhanVien": "TX0000000001",
+        "Thang": 6,
+        "Nam": 2025,
+        "lichLamViec": [
+            {
+                "ngay": 1,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 2,
+                "thu": "Hai",
+                "gioLam": 6
+            },
+            {
+                "ngay": 3,
+                "thu": "Ba",
+                "gioLam": 5
+            },
+            {
+                "ngay": 4,
+                "thu": "Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 5,
+                "thu": "Năm",
+                "gioLam": 5
+            },
+            {
+                "ngay": 6,
+                "thu": "Sáu",
+                "gioLam": 5
+            },
+            {
+                "ngay": 7,
+                "thu": "Bảy",
+                "gioLam": 5
+            },
+            {
+                "ngay": 8,
+                "thu": "Chủ nhật",
+                "gioLam": 0
+            },
+            {
+                "ngay": 9,
+                "thu": "Hai",
+                "gioLam": 0
+            },
+            {
+                "ngay": 10,
+                "thu": "Ba",
+                "gioLam": 0
+            },
+            {
+                "ngay": 11,
+                "thu": "Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 12,
+                "thu": "Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 13,
+                "thu": "Sáu",
+                "gioLam": 0
+            },
+            {
+                "ngay": 14,
+                "thu": "Bảy",
+                "gioLam": 0
+            },
+            {
+                "ngay": 15,
+                "thu": "Chủ nhật",
+                "gioLam": 0
+            },
+            {
+                "ngay": 16,
+                "thu": "Hai",
+                "gioLam": 0
+            },
+            {
+                "ngay": 17,
+                "thu": "Ba",
+                "gioLam": 0
+            },
+            {
+                "ngay": 18,
+                "thu": "Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 19,
+                "thu": "Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 20,
+                "thu": "Sáu",
+                "gioLam": 0
+            },
+            {
+                "ngay": 21,
+                "thu": "Bảy",
+                "gioLam": 0
+            },
+            {
+                "ngay": 22,
+                "thu": "Chủ nhật",
+                "gioLam": 0
+            },
+            {
+                "ngay": 23,
+                "thu": "Hai",
+                "gioLam": 0
+            },
+            {
+                "ngay": 24,
+                "thu": "Ba",
+                "gioLam": 0
+            },
+            {
+                "ngay": 25,
+                "thu": "Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 26,
+                "thu": "Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 27,
+                "thu": "Sáu",
+                "gioLam": 0
+            },
+            {
+                "ngay": 28,
+                "thu": "Bảy",
+                "gioLam": 0
+            },
+            {
+                "ngay": 29,
+                "thu": "Chủ nhật",
+                "gioLam": 0
+            },
+            {
+                "ngay": 30,
+                "thu": "Hai",
+                "gioLam": 0
+            }
+        ]
+    },
+    {
+        "maNhanVien": "user3",
+        "Thang": 6,
+        "Nam": 2025,
+        "lichLamViec": [
+            {
+                "ngay": 1,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 2,
+                "thu": "Hai",
+                "gioLam": 8
+            },
+            {
+                "ngay": 3,
+                "thu": "Ba",
+                "gioLam": 8
+            },
+            {
+                "ngay": 4,
+                "thu": "Tư",
+                "gioLam": 13
+            },
+            {
+                "ngay": 5,
+                "thu": "Năm",
+                "gioLam": 8
+            },
+            {
+                "ngay": 6,
+                "thu": "Sáu",
+                "gioLam": 6
+            },
+            {
+                "ngay": 7,
+                "thu": "Bảy",
+                "gioLam": 7
+            },
+            {
+                "ngay": 8,
+                "thu": "Chủ nhật",
+                "gioLam": 5
+            },
+            {
+                "ngay": 9,
+                "thu": "Hai",
+                "gioLam": 13
+            },
+            {
+                "ngay": 10,
+                "thu": "Ba",
+                "gioLam": 13
+            },
+            {
+                "ngay": 11,
+                "thu": "Tư",
+                "gioLam": 8
+            },
+            {
+                "ngay": 12,
+                "thu": "Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 13,
+                "thu": "Sáu",
+                "gioLam": 5
+            },
+            {
+                "ngay": 14,
+                "thu": "Bảy",
+                "gioLam": 0
+            },
+            {
+                "ngay": 15,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 16,
+                "thu": "Hai",
+                "gioLam": 0
+            },
+            {
+                "ngay": 17,
+                "thu": "Ba",
+                "gioLam": 13
+            },
+            {
+                "ngay": 18,
+                "thu": "Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 19,
+                "thu": "Năm",
+                "gioLam": 13
+            },
+            {
+                "ngay": 20,
+                "thu": "Sáu",
+                "gioLam": 0
+            },
+            {
+                "ngay": 21,
+                "thu": "Bảy",
+                "gioLam": 8
+            },
+            {
+                "ngay": 22,
+                "thu": "Chủ nhật",
+                "gioLam": 13
+            },
+            {
+                "ngay": 23,
+                "thu": "Hai",
+                "gioLam": 8
+            },
+            {
+                "ngay": 24,
+                "thu": "Ba",
+                "gioLam": 8
+            },
+            {
+                "ngay": 25,
+                "thu": "Tư",
+                "gioLam": 5
+            },
+            {
+                "ngay": 26,
+                "thu": "Năm",
+                "gioLam": 5
+            },
+            {
+                "ngay": 27,
+                "thu": "Sáu",
+                "gioLam": 0
+            },
+            {
+                "ngay": 28,
+                "thu": "Bảy",
+                "gioLam": 8
+            },
+            {
+                "ngay": 29,
+                "thu": "Chủ nhật",
+                "gioLam": 5
+            },
+            {
+                "ngay": 30,
+                "thu": "Hai",
+                "gioLam": 13
+            }
+        ]
+    },
+    {
+        "maNhanVien": "admin",
+        "Thang": 6,
+        "Nam": 2025,
+        "lichLamViec": [
+            {
+                "ngay": 1,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 2,
+                "thu": "Hai",
+                "gioLam": 8
+            },
+            {
+                "ngay": 3,
+                "thu": "Ba",
+                "gioLam": 8
+            },
+            {
+                "ngay": 4,
+                "thu": "Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 5,
+                "thu": "Năm",
+                "gioLam": 8
+            },
+            {
+                "ngay": 6,
+                "thu": "Sáu",
+                "gioLam": 8
+            },
+            {
+                "ngay": 7,
+                "thu": "Bảy",
+                "gioLam": 8
+            },
+            {
+                "ngay": 8,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 9,
+                "thu": "Hai",
+                "gioLam": 8
+            },
+            {
+                "ngay": 10,
+                "thu": "Ba",
+                "gioLam": 0
+            },
+            {
+                "ngay": 11,
+                "thu": "Tư",
+                "gioLam": 0
+            },
+            {
+                "ngay": 12,
+                "thu": "Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 13,
+                "thu": "Sáu",
+                "gioLam": 0
+            },
+            {
+                "ngay": 14,
+                "thu": "Bảy",
+                "gioLam": 5
+            },
+            {
+                "ngay": 15,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 16,
+                "thu": "Hai",
+                "gioLam": 8
+            },
+            {
+                "ngay": 17,
+                "thu": "Ba",
+                "gioLam": 8
+            },
+            {
+                "ngay": 18,
+                "thu": "Tư",
+                "gioLam": 13
+            },
+            {
+                "ngay": 19,
+                "thu": "Năm",
+                "gioLam": 0
+            },
+            {
+                "ngay": 20,
+                "thu": "Sáu",
+                "gioLam": 0
+            },
+            {
+                "ngay": 21,
+                "thu": "Bảy",
+                "gioLam": 8
+            },
+            {
+                "ngay": 22,
+                "thu": "Chủ nhật",
+                "gioLam": 8
+            },
+            {
+                "ngay": 23,
+                "thu": "Hai",
+                "gioLam": 13
+            },
+            {
+                "ngay": 24,
+                "thu": "Ba",
+                "gioLam": 5
+            },
+            {
+                "ngay": 25,
+                "thu": "Tư",
+                "gioLam": 5
+            },
+            {
+                "ngay": 26,
+                "thu": "Năm",
+                "gioLam": 8
+            },
+            {
+                "ngay": 27,
+                "thu": "Sáu",
+                "gioLam": 8
+            },
+            {
+                "ngay": 28,
+                "thu": "Bảy",
+                "gioLam": 0
+            },
+            {
+                "ngay": 29,
+                "thu": "Chủ nhật",
+                "gioLam": 13
+            },
+            {
+                "ngay": 30,
+                "thu": "Hai",
+                "gioLam": 8
+            }
+        ]
+    }
+]

@@ -1,12 +1,19 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox as mb
 from src.view.packagePage import HomePage as packagePage
 from src.view.accountPage import AccountPage as AccountPage
 from src.view.feePage import FeePage as FeePage
 from src.view.discountPage import DiscountPage as DiscountPage
+from src.view.driverPage import DriverPage as DriverPage
+from src.view.detail_employeePage import Detail_EmployeePage as Detail_EmployeePage
+from src.view.salaryPage import SalaryPage as SalaryPage
+from src.view.loginPage import start_login
+
 
 class MainPage:
-    def __init__(self):
+    def __init__(self, loaiTaiKhoan):
+        self.loaiTaiKhoan = loaiTaiKhoan
         # Create the main window
         root = Tk()
         root.title("Home")
@@ -22,15 +29,19 @@ class MainPage:
         root.geometry(f"{WIDTH}x{HEIGHT}+{x}+{y}")
         root.configure(bg="#fff")
         root.resizable(False, False)
+
         # Main
         # Functions
 
+        def switch_Frame(new_page_func):
+            for widget in mainPageFrame.winfo_children():
+                widget.destroy()
+
+            new_page_func()
+
         def switch_Indication(indicator_Label, page):
-            home_Btn_Indicator.config(bg=menuBarColor)
-            account_Btn_Indicator.config(bg=menuBarColor)
-            discount_Btn_Indicator.config(bg=menuBarColor)
-            employee_Btn_Indicator.config(bg=menuBarColor)
-            fee_Btn_Indicator.config(bg=menuBarColor)
+            for i in indicators:
+                indicators[i].config(bg=menuBarColor)
             indicator_Label.config(bg="White")
             if menuBarFrame.winfo_width() > 45:
                 fold_MenuBar()
@@ -39,20 +50,17 @@ class MainPage:
             page()
 
         def extending_Animation():
-            currentWidthMenuBar = menuBarFrame.winfo_width()
-            if not currentWidthMenuBar > 200:
-                currentWidthMenuBar += 10
-                menuBarFrame.config(width=currentWidthMenuBar)
-                # mainPageFrame.place(relwidth=1.0 - currentWidthMenuBar/925, relheight=1.0, x=currentWidthMenuBar)
-                root.after(ms=8, func=extending_Animation)
+            current = menuBarFrame.winfo_width()
+            if not current > 200:
+                menuBarFrame.config(width=current)
+                root.after(8, extending_Animation)
 
         def folding_Animation():
             currentWidthMenuBar = menuBarFrame.winfo_width()
             if currentWidthMenuBar != 45:
                 currentWidthMenuBar -= 10
                 menuBarFrame.config(width=currentWidthMenuBar)
-                # mainPageFrame.place(relwidth=1.0 - currentWidthMenuBar/925, relheight=1.0, x=currentWidthMenuBar)
-                root.after(ms=8, func=folding_Animation)
+                root.after(8, folding_Animation)
 
         def extend_MenuBar():
             extending_Animation()
@@ -74,13 +82,11 @@ class MainPage:
             accountPage.pack(fill=BOTH, expand=True)
             accountPage.bind("<Button-1>", lambda e: fold_MenuBar())
 
-        def employee_Page():
-            employeePage = Frame(mainPageFrame)
-            employeePageLabel = Label(
-                employeePage, text="employee Page", font=("Bold", 20))
-            employeePageLabel.place(x=100, y=200)
-            employeePage.pack(fill=BOTH, expand=True)
-            employeePage.bind("<Button-1>", lambda e: fold_MenuBar())
+        def discount_Page():
+            discountPage = Frame(mainPageFrame)
+            DiscountPage(discountPage)
+            discountPage.pack(fill=BOTH, expand=True)
+            discountPage.bind("<Button-1>", lambda e: fold_MenuBar())
 
         def fee_Page():
             feePage = Frame(mainPageFrame)
@@ -88,25 +94,47 @@ class MainPage:
             feePage.pack(fill=BOTH, expand=True)
             feePage.bind("<Button-1>", lambda e: fold_MenuBar())
 
-        def discount_Page():
-            discountPage = Frame(mainPageFrame)
-            DiscountPage(discountPage)
-            discountPage.pack(fill=BOTH, expand=True)
-            discountPage.bind("<Button-1>", lambda e: fold_MenuBar())
+        def driver_Page():
+            driverPage = Frame(mainPageFrame)
+            DriverPage(driverPage, switch_Frame)
+            driverPage.pack(fill=BOTH, expand=True)
+            driverPage.bind("<Button-1>", lambda e: fold_MenuBar())
+
+        def detail_Employee_Page(maTaiXe):
+            detailFrame = Frame(mainPageFrame)
+            Detail_EmployeePage(detailFrame, switch_Frame, maTaiXe)
+            detailFrame.pack(fill=BOTH, expand=True)
+
+        def salary_Page():
+            salary_Frame = Frame(mainPageFrame)
+            SalaryPage(salary_Frame, switch_Frame, detail_Employee_Page)
+            salary_Frame.pack(fill=BOTH, expand=True)
+            salary_Frame.bind("<Button-1>", lambda e: fold_MenuBar())
+
+        def logout():
+            confirm = mb.askyesno(
+                "Đăng xuất", "Bạn có chắc chắn muốn đăng xuất?")
+            if confirm:
+                root.destroy()  # đóng MainPage
+                start_login(on_login_success=MainPage)
 
         # Icons
         toggle_Icon = PhotoImage(file="src/image/toggle_btn_icon.png")
         close_Icon = PhotoImage(file="src/image/close_btn_icon.png")
-        home_Icon = PhotoImage(file="src/image/store.png")
-        account_Icon = PhotoImage(file="src/image/accountant.png")
-        discount_Icon = PhotoImage(file="src/image/tag.png")
-        fee_Icon = PhotoImage(file="src/image/pay.png")
-        employee_Icon = PhotoImage(file="src/image/employee.png")
+        icons = {
+            "Đơn hàng": PhotoImage(file="src/image/store.png"),
+            "Tài khoản": PhotoImage(file="src/image/accountant.png"),
+            "Tài xế": PhotoImage(file="src/image/accountant.png"),
+            "Lương": PhotoImage(file="src/image/salary.png"),
+            "Đăng xuất": PhotoImage(file="src/image/log_out.png"),
+            "Phí vận chuyển": PhotoImage(file="src/image/pay.png"),
+            "Khuyến mãi": PhotoImage(file="src/image/tag.png")
+        }
 
         # Toggle sidemenu
         mainPageFrame = Frame(root)
         # mainPageFrame.pack(side="right",fill="y")
-        mainPageFrame.place(x=45,y=0, width=1280, height=700)
+        mainPageFrame.place(x=45, y=0, width=1280, height=700)
         mainPageFrame.bind("<Button-1>", lambda e: fold_MenuBar())
         menuBarFrame = Frame(root, bg="#383838")
 
@@ -118,77 +146,57 @@ class MainPage:
                                  border=0, activebackground=menuBarColor, command=extend_MenuBar)
         toggle_Menu_Btn.place(x=4, y=10)
 
-        # Home
-        home_Menu_Btn = Button(menuBarFrame, image=home_Icon, bg=menuBarColor, border=0,
-                               activebackground=menuBarColor, command=lambda: switch_Indication(home_Btn_Indicator, home_Page))
-        home_Menu_Btn.place(x=9, y=130, width=30, height=40)
+        full_menu = [
+            ("Đơn hàng", home_Page),
+            ("Tài khoản", account_Page),
+            ("Tài xế", driver_Page),
+            ("Lương", salary_Page),
+            ("Phí vận chuyển", fee_Page),
+            ("Khuyến mãi", discount_Page)
+        ]
+        nhanvien_menu = [
+            ("Đơn hàng", home_Page),
+            ("Phí vận chuyển", fee_Page),
+            ("Khuyến mãi", discount_Page)
+        ]
+        selected_menu = full_menu if loaiTaiKhoan == "Quản lý" else nhanvien_menu
 
-        home_Btn_Indicator = Label(menuBarFrame, bg=menuBarColor)
-        home_Btn_Indicator.place(x=3, y=130, height=40, width=3)
+        indicators = {}
+        y_pos = 130
+        for name, func in selected_menu:
+            icon = icons[name]
+            indicator = Label(menuBarFrame, bg=menuBarColor)
+            indicator.place(x=3, y=y_pos, height=40, width=3)
+            indicators[name] = indicator
 
-        home_Page_Label = Label(menuBarFrame, bg=menuBarColor,
-                                text="Đơn hàng", fg="White", font=("Bold", 15), anchor=W)
-        home_Page_Label.place(x=45, y=130, width=100, height=40)
-        home_Page_Label.bind(
-            "<Button-1>", lambda e: switch_Indication(home_Btn_Indicator, home_Page))
+            Button(menuBarFrame, image=icon, bg=menuBarColor, border=0,
+                   activebackground=menuBarColor, command=lambda i=indicator, f=func: switch_Indication(
+                       i, f)
+                   ).place(x=9, y=y_pos, width=30, height=40)
 
-        # Account
-        account_Menu_Btn = Button(menuBarFrame, image=account_Icon, bg=menuBarColor, border=0,
-                                  activebackground=menuBarColor, command=lambda: switch_Indication(account_Btn_Indicator, account_Page))
-        account_Menu_Btn.place(x=9, y=190, width=30, height=40)
+            lbl = Label(menuBarFrame, bg=menuBarColor, text=name,
+                        fg="White", font=("Bold", 15), anchor=W)
+            lbl.place(x=45, y=y_pos, width=110, height=40)
+            lbl.bind("<Button-1>", lambda e, i=indicator,
+                     f=func: switch_Indication(i, f))
+            y_pos += 60
 
-        account_Btn_Indicator = Label(menuBarFrame, bg=menuBarColor)
-        account_Btn_Indicator.place(x=3, y=190, height=40, width=3)
+        icon = icons["Đăng xuất"]
+        logout_indicator = Label(menuBarFrame, bg=menuBarColor)
+        logout_indicator.place(x=3, y=y_pos + 40, height=40, width=3)
 
-        account_Page_Label = Label(
-            menuBarFrame, bg=menuBarColor, text="Tài khoản", fg="White", font=("Bold", 15), anchor=W)
-        account_Page_Label.place(x=45, y=190, width=100, height=40)
-        account_Page_Label.bind(
-            "<Button-1>", lambda e: switch_Indication(account_Btn_Indicator, account_Page))
+        Button(menuBarFrame, image=icon, bg=menuBarColor, border=0,
+               activebackground=menuBarColor,
+               command=lambda: logout()  # gọi hàm xử lý đăng xuất
+               ).place(x=9, y=y_pos + 40, width=30, height=40)
 
-        # discount
-        discount_Menu_Btn = Button(menuBarFrame, image=discount_Icon, bg=menuBarColor, border=0,
-                                   activebackground=menuBarColor, command=lambda: switch_Indication(discount_Btn_Indicator, discount_Page))
-        discount_Menu_Btn.place(x=9, y=250, width=35, height=40)
+        lbl = Label(menuBarFrame, bg=menuBarColor, text="Đăng xuất", fg="White",
+                    font=("Bold", 15), anchor=W)
+        lbl.place(x=45, y=y_pos + 40, width=110, height=40)
+        lbl.bind("<Button-1>", lambda e: logout())
 
-        discount_Btn_Indicator = Label(menuBarFrame, bg=menuBarColor)
-        discount_Btn_Indicator.place(x=3, y=250, height=40, width=3)
-
-        discount_Page_Label = Label(
-            menuBarFrame, bg=menuBarColor, text="Khuyến mãi", fg="White", font=("Bold", 15), anchor=W)
-        discount_Page_Label.place(x=45, y=250, width=110, height=40)
-        discount_Page_Label.bind(
-            "<Button-1>", lambda e: switch_Indication(discount_Btn_Indicator, discount_Page))
-
-        # fee
-        fee_Menu_Btn = Button(menuBarFrame, image=fee_Icon, bg=menuBarColor, border=0,
-                                 activebackground=menuBarColor, command=lambda: switch_Indication(fee_Btn_Indicator, fee_Page))
-        fee_Menu_Btn.place(x=9, y=310, width=30, height=40)
-
-        fee_Btn_Indicator = Label(menuBarFrame, bg=menuBarColor)
-        fee_Btn_Indicator.place(x=3, y=310, height=40, width=3)
-
-        fee_Page_Label = Label(menuBarFrame, bg=menuBarColor,
-                                  text="Phí vận chuyển", fg="White", font=("Bold", 15), anchor=W)
-        fee_Page_Label.place(x=45, y=310, width=150, height=40)
-        fee_Page_Label.bind(
-            "<Button-1>", lambda e: switch_Indication(fee_Btn_Indicator, fee_Page))
-
-        # employee
-        employee_Menu_Btn = Button(menuBarFrame, image=employee_Icon, bg=menuBarColor, border=0,
-                                activebackground=menuBarColor, command=lambda: switch_Indication(employee_Btn_Indicator, employee_Page))
-        employee_Menu_Btn.place(x=9, y=370, width=30, height=40)
-
-        employee_Btn_Indicator = Label(menuBarFrame, bg=menuBarColor)
-        employee_Btn_Indicator.place(x=3, y=370, height=40, width=3)
-
-        employee_Page_Label = Label(menuBarFrame, bg=menuBarColor,
-                                 text="Nhân viên", fg="White", font=("Bold", 15), anchor=W)
-        employee_Page_Label.place(x=45, y=370, width=100, height=40)
-        employee_Page_Label.bind(
-            "<Button-1>", lambda e: switch_Indication(employee_Btn_Indicator, employee_Page))
-
-        switch_Indication(home_Btn_Indicator, home_Page)
+        first_indicator, first_page = selected_menu[0]
+        switch_Indication(indicators[first_indicator], first_page)
 
         menuBarFrame.pack(side=LEFT, fill=Y)
         menuBarFrame.pack_propagate(flag=False)

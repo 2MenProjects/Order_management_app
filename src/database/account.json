@@ -1,26 +1,62 @@
 [
     {
         "tenTaiKhoan": "admin",
-        "tenNguoiDung": "admin",
+        "tenNguoiDung": "Quản lý",
         "matKhau": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
-        "loaiTaiKhoan": "admin"
+        "loaiTaiKhoan": "Quản lý",
+        "soDienThoai": "0775941234",
+        "diaChi": "254",
+        "cccd": "079203009999",
+        "nganHang": "ACB",
+        "stk_nganHang": "23900017",
+        "luongCoBan": 40000
     },
     {
         "tenTaiKhoan": "user1",
-        "tenNguoiDung": "user1",
+        "tenNguoiDung": "Lê Thị B",
         "matKhau": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
-        "loaiTaiKhoan": "admin"
+        "loaiTaiKhoan": "Quản lý",
+        "soDienThoai": "0888003340",
+        "diaChi": "254",
+        "cccd": "079203002222",
+        "nganHang": "VCB",
+        "stk_nganHang": "23900017",
+        "luongCoBan": 40000
     },
     {
         "tenTaiKhoan": "user2",
-        "tenNguoiDung": "user2",
+        "tenNguoiDung": "Trương Minh Q",
         "matKhau": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
-        "loaiTaiKhoan": "user"
+        "loaiTaiKhoan": "Nhân viên giao dịch",
+        "soDienThoai": "0888003339",
+        "diaChi": "250",
+        "cccd": "079203003333",
+        "nganHang": "",
+        "stk_nganHang": "",
+        "luongCoBan": 30000
     },
     {
         "tenTaiKhoan": "user3",
-        "tenNguoiDung": "user3",
+        "tenNguoiDung": "Phạm Thị Ngọc T",
         "matKhau": "6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918",
-        "loaiTaiKhoan": "user"
+        "loaiTaiKhoan": "Nhân viên giao dịch",
+        "soDienThoai": "0888003338",
+        "diaChi": "",
+        "cccd": "079203004444",
+        "nganHang": "",
+        "stk_nganHang": "",
+        "luongCoBan": 30000
+    },
+    {
+        "tenTaiKhoan": "user4",
+        "tenNguoiDung": "Phạm Minh Nhật",
+        "matKhau": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "loaiTaiKhoan": "Nhân viên giao dịch",
+        "soDienThoai": "0775941235",
+        "diaChi": "254",
+        "cccd": "079203003334",
+        "nganHang": "",
+        "stk_nganHang": "",
+        "luongCoBan": 30000
     }
 ]

@@ -1,0 +1,30 @@
+[
+    {
+        "maGiamGia": "GM00001",
+        "phanTramGiam": 20,
+        "ngayBatDau": "21-05-2025",
+        "ngayKetThuc": "23-05-2025",
+        "trangThai": "Đã kết thúc"
+    },
+    {
+        "maGiamGia": "GM00002",
+        "phanTramGiam": 40,
+        "ngayBatDau": "24-05-2025",
+        "ngayKetThuc": "25-05-2025",
+        "trangThai": "Đã kết thúc"
+    },
+    {
+        "maGiamGia": "GM00003",
+        "phanTramGiam": 80,
+        "ngayBatDau": "26-05-2025",
+        "ngayKetThuc": "29-05-2025",
+        "trangThai": "Đã kết thúc"
+    },
+    {
+        "maGiamGia": "GM00004",
+        "phanTramGiam": 50,
+        "ngayBatDau": "01-06-2025",
+        "ngayKetThuc": "02-06-2025",
+        "trangThai": "Đang diễn ra"
+    }
+]

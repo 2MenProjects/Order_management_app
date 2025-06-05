@@ -310,6 +310,11 @@ class AccountPage:
                         "Lỗi", "Vui lòng nhập đúng định dạng số điện thoại (10 chữ số)!")
                     return
 
+                if not sdt.startswith(("09", "03", "08", "07", "05")):
+                    mb.showwarning(
+                        "Lỗi", "Số điện thoại không hợp lệ! Vui lòng nhập lại.")
+                    return
+
                 if cccd == "":
                     mb.showwarning("Lỗi", "Vui lòng nhập CCCD!")
                     return
@@ -388,8 +393,6 @@ class AccountPage:
         def edit():
             username = self.entry_username.get()
             old_pass = self.entry_password.get()
-            old_cccd = self.entry_cccd.get()
-            old_sdt = self.entry_phone.get()
 
             if self.btn_edit["text"] == "Sửa":
                 self.btn_add.config(state="disabled")
@@ -451,6 +454,11 @@ class AccountPage:
                 if len(new_phone) != 10:
                     mb.showwarning(
                         "Lỗi", "Vui lòng nhập đúng định dạng số điện thoại (10 chữ số)!")
+                    return
+
+                if not new_phone.startswith(("09", "03", "08", "07", "05")):
+                    mb.showwarning(
+                        "Lỗi", "Số điện thoại không hợp lệ! Vui lòng nhập lại.")
                     return
 
                 for user in self.dstk:
@@ -547,8 +555,8 @@ class AccountPage:
                 mb.showwarning("Thông báo", "Không có dữ liệu để xuất!")
                 return
 
-            file_path = fd.asksaveasfilename(defaultextension=".xlsx", filetypes=[
-                                             ("Excel files", "*.xlsx")], initialfile="Danh_sach_tai_khoan.xlsx")
+            file_path = fd.asksaveasfilename(defaultextension=".xlsx", filetypes=[(
+                "Excel files", "*.xlsx")], initialfile="Danh_sach_tai_khoan.xlsx")
             if not file_path:
                 return
 
@@ -556,8 +564,8 @@ class AccountPage:
             ws = wb.active  # Worksheet
             ws.title = "Danh sách nhân viên giao dịch"
 
-            headers = ["Tên tài khoản", "Tên người dùng", "Chức vụ",
-                       "Số điện thoại", "Địa chỉ", "CCCD", "Ngân hàng", "STK ngân hàng", "Lương cơ bản"]
+            headers = ["Tên tài khoản", "Tên người dùng", "Chức vụ", "Số điện thoại",
+                       "Địa chỉ", "CCCD", "Ngân hàng", "STK ngân hàng", "Lương cơ bản"]
             ws.append(headers)
 
             for nv in self.dstk:
@@ -581,9 +589,7 @@ class AccountPage:
             try:
                 wb = openpyxl.load_workbook(file_path)
                 ws = wb.active
-
                 errors = []
-
                 # bỏ dòng tiêu đề, chỉ lấy từ dòng 2 trở đi.
                 rows = list(ws.iter_rows(min_row=2, values_only=True))
 
@@ -593,9 +599,16 @@ class AccountPage:
 
                     luong = lcb.replace("đ", "").replace(
                         ".", "") if lcb else "0"
-
                     row_errors = []
 
+                    if not ma:
+                        row_errors.append("Tên tài khoản không được bỏ trống.")
+                    else:
+                        ma_conflict = any(user.ten_tai_khoan ==
+                                          ma for user in self.dstk)
+                        if ma_conflict:
+                            row_errors.append(
+                                f"Tên tài khoản '{ma}' đã tồn tại ở nhân viên khác.")
                     # Kiểm tra định dạng SĐT
                     if not sdt.isdigit() or len(sdt) != 10:
                         row_errors.append(
@@ -611,22 +624,18 @@ class AccountPage:
                     ) or any(
                         (user.cccd == cccd and user.ten_tai_khoan != ma) for user in self.dstk
                     )
-
                     if cccd_conflict:
                         row_errors.append(
                             f"CCCD '{cccd}' đã tồn tại ở nhân viên khác.")
-
                     # Kiểm tra trùng SĐT
                     sdt_conflict = any(
                         (tx.soDienThoai == sdt and tx.maTaiXe != ma) for tx in self.dstx
                     ) or any(
                         (user.so_dien_thoai == sdt and user.ten_tai_khoan != ma) for user in self.dstk
                     )
-
                     if sdt_conflict:
                         row_errors.append(
                             f"SĐT '{sdt}' đã tồn tại ở nhân viên khác.")
-
                     if row_errors:
                         error_message = f"- Dòng {idx}: " + \
                             "; ".join(row_errors)
@@ -640,7 +649,6 @@ class AccountPage:
                             # giữ lại mật khẩu cũ
                             mat_khau = nv.mat_khau
                             break
-
                     nv_moi = NhanVien(
                         ten_tai_khoan=ma,
                         ten_nguoi_dung=ten,
@@ -654,20 +662,17 @@ class AccountPage:
                         luong_co_ban=int(luong),
                         is_hashed=True
                     )
-
                     found = False
                     for i, nv in enumerate(self.dstk):
                         if nv.ten_tai_khoan == ma:
                             self.dstk[i] = nv_moi  # cập nhật nhân viên
                             found = True
                             break
-
                     if not found:
                         self.dstk.append(nv_moi)
 
                 self.save_data(self.filename)
                 refresh_table()
-
                 if errors:
                     mb.showwarning(
                         "Một số dòng bị lỗi",

@@ -249,6 +249,11 @@ class DriverPage:
                         "Lỗi", "Vui lòng nhập đúng định dạng số điện thoại (10 chữ số)!")
                     return
 
+                if not sdt.startswith(("09", "03", "08", "07", "05")):
+                    mb.showwarning(
+                        "Lỗi", "Số điện thoại không hợp lệ! Vui lòng nhập lại.")
+                    return
+
                 if len(cccd) != 12:
                     mb.showwarning(
                         "Lỗi", "Vui lòng nhập đúng định dạng CCCD (12 chữ số)!")
@@ -372,6 +377,11 @@ class DriverPage:
                 if len(sdt_moi) != 10:
                     mb.showwarning(
                         "Lỗi", "Vui lòng nhập đúng định dạng số điện thoại (10 chữ số)!")
+                    return
+
+                if not sdt_moi.startswith(("09", "03", "08", "07", "05")):
+                    mb.showwarning(
+                        "Lỗi", "Số điện thoại không hợp lệ! Vui lòng nhập lại.")
                     return
 
                 for user in self.dstk:
@@ -512,6 +522,15 @@ class DriverPage:
                         ".", "") if lcb else "0"
 
                     row_errors = []
+
+                    if not ma:
+                        row_errors.append("Mã tài xế không được bỏ trống.")
+                    else:
+                        ma_conflict = any(tx.maTaiXe ==
+                                          ma for tx in self.dstx)
+                        if ma_conflict:
+                            row_errors.append(
+                                f"Mã tài xế '{ma}' đã tồn tại ở nhân viên khác.")
 
                     # Kiểm tra định dạng SĐT
                     if not sdt.isdigit() or len(sdt) != 10:

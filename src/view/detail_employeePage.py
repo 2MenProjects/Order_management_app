@@ -305,23 +305,6 @@ class Detail_EmployeePage:
         self.lbl_hien_thi_tong_gio_lam.config(
             text=f"Tổng số giờ làm: {self.tong_gio_lam}")
 
-    #     self.cap_nhat_so_gio_lam_viec_cho_tai_xe()
-
-    # def cap_nhat_so_gio_lam_viec_cho_tai_xe(self):
-    #     try:
-    #         with open(self.file_driver, "r", encoding="utf-8") as file:
-    #             ds_tai_xe = json.load(file)
-
-    #         for tx in ds_tai_xe:
-    #             if tx["maNhanVien"] == self.maNhanVien:
-    #                 tx["soGioLamViec"] = self.tong_gio_lam
-
-    #         with open(self.file_driver, "w", encoding="utf-8") as file:
-    #             json.dump(ds_tai_xe, file, ensure_ascii=False, indent=4)
-
-    #     except Exception as e:
-    #         mb.showerror("Lỗi", f"Lỗi khi cập nhật số giờ làm việc: {e}")
-
     def load_detail_employee(self, filename):
         try:
             with open(filename, "r", encoding="utf-8") as file:

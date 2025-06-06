@@ -127,6 +127,8 @@ class HomePage:
                     ghiChu_box.insert("1.0",item_values[10])
                     set_readonly_entry(tongTien_box,str(item_values[11]).replace(" VNĐ",""))
                     trangThai_box.set(item_values[12])
+                    btn_taoDonHang.config(text="Tạo đơn hàng",command=taoDonHang_click)
+
 
         def row_selection_sanPham_table():            
             selected_item = sanPham_table.focus()
@@ -149,6 +151,8 @@ class HomePage:
 
                     select_image.selected_image_path = file_path
                     select_image.selected_image_name = item_values[3]
+
+                    btn_taoSanPham.config(text="Tạo sản phẩm",command=themSanPham)
 
         def taoDonHang_click():
             clear_box()
@@ -368,7 +372,8 @@ class HomePage:
                 tag = "evenrow" if index % 2 == 0 else "oddrow"            
                 phiVanChuyen = "{:,} VNĐ".format(int(item.phi_van_chuyen))
                 tongTien = "{:,} VNĐ".format(int(item.tong_tien))
-                packageTable.insert("", END, values=(item.ma_don_hang, item.tenNguoiNhan, item.soDienThoai, item.tenNguoiGui,item.soDienThoaiNguoiGui,item.dia_chi_giao,item.ngay_dat,
+                packageTable.insert("", END, values=(item.ma_don_hang, item.tenNguoiNhan, item.soDienThoai, item.tenNguoiGui,
+                                                        item.soDienThoaiNguoiGui,item.dia_chi_giao,item.ngay_dat,
                                                         item.phuong_thuc_thanh_toan, phiVanChuyen,item.trong_luong, item.ghi_chu,
                                                         tongTien, item.trang_thai,), tags=(tag,))
         
@@ -435,7 +440,8 @@ class HomePage:
                 tag = "evenrow" if index % 2 == 0 else "oddrow"            
                 phiVanChuyen = "{:,} VNĐ".format(int(item.phi_van_chuyen))
                 tongTien = "{:,} VNĐ".format(int(item.tong_tien))
-                packageTable.insert("", END, values=(item.ma_don_hang, item.tenNguoiNhan, item.soDienThoai, item.tenNguoiGui,item.soDienThoaiNguoiGui,item.dia_chi_giao,item.ngay_dat,
+                packageTable.insert("", END, values=(item.ma_don_hang, item.tenNguoiNhan, item.soDienThoai, item.tenNguoiGui,
+                                                        item.soDienThoaiNguoiGui,item.dia_chi_giao,item.ngay_dat,
                                                         item.phuong_thuc_thanh_toan, phiVanChuyen,item.trong_luong, item.ghi_chu,
                                                         tongTien, item.trang_thai,), tags=(tag,))
 
@@ -501,7 +507,7 @@ class HomePage:
             result = mb.askyesno("Thông báo","Bạn có chắc chắn muốn xóa sản phẩm không ?",parent=themSanPham_win)
             if result == YES:
                 if danhSachSanPham.xoaSanPham(maSanPham_box.get()):
-                    load_data()
+                    load_data_sanPham()
                     mb.showinfo("Thông báo","Xóa sản phẩm thành công",parent=themSanPham_win)            
                 else:
                     mb.showerror("Lỗi","Xóa sản phẩm thất bại",parent=themSanPham_win)
@@ -607,7 +613,7 @@ class HomePage:
                     btn_suaSanPham.config(state='disabled')
                     btn_xoaSanPham.config(state='disabled')
 
-            themSanPham_win.grab_set()          # Chỉ cho phép tương tác với toplevel
+            themSanPham_win.grab_set()
             root.wait_window(themSanPham_win)  
             
 

@@ -41,6 +41,7 @@ class DiscountPage:
                     phanTramGiam_box.insert(0, item_values[1].replace("%",""))
                     ngayBatDau_box.set_date(item_values[2])
                     ngayKetThuc_box.set_date(item_values[3])
+                    btn_taoChuongTrinhGiamGia.config(text="Tạo chương trình giảm giá",command=taoChuongTrinhGiamGia_click)
 
         def search():
             for item in discountTable.get_children():
@@ -106,13 +107,17 @@ class DiscountPage:
         def taoChuongTrinhGiamGia_click():
             clear_box()
             set_readonly_entry(maGiamGia_box,self.dsct.taoMaChuongTrinh())
+            # ngay_bat_dau = datetime.strptime(self.dsct.dsct[-1].ngayBatDau, "%d-%m-%Y").date()
             ngay_ket_thuc = datetime.strptime(self.dsct.dsct[-1].ngayKetThuc, "%d-%m-%Y").date()
+            ngay_hien_tai = datetime.today().date()
             if isinstance(ngay_ket_thuc, datetime):
                 ngay_ket_thuc = ngay_ket_thuc.date()
+            if ngay_ket_thuc < ngay_hien_tai:
+                ngay_ket_thuc = ngay_hien_tai
             ngayBatDau_box.config(mindate=ngay_ket_thuc+timedelta(days=1))
             ngayBatDau_box.set_date(ngay_ket_thuc+timedelta(days=1))
-            ngayKetThuc_box.config(mindate=ngayBatDau_box.get_date())
-            ngayKetThuc_box.set_date(ngayBatDau_box.get_date())
+            ngayKetThuc_box.config(mindate=ngay_ket_thuc+timedelta(days=2))
+            ngayKetThuc_box.set_date(ngay_ket_thuc+timedelta(days=2))
             btn_taoChuongTrinhGiamGia.config(text="Xác nhận",command=save)
 
         def save():
@@ -134,6 +139,8 @@ class DiscountPage:
                 set_readonly_entry(maGiamGia_box,"")
             clear_box()
             btn_taoChuongTrinhGiamGia.config(text="Tạo chương trình giảm giá",command=taoChuongTrinhGiamGia_click)
+            if self.dsct.dsct[-1].trangThai != "Đã kết thúc":
+                btn_taoChuongTrinhGiamGia.config(state='disabled')
 
         def xoaChuongTrinhGiamGia_click():
             ct = self.dsct.timKiemChuongTrinhTheoMaGiam(maGiamGia_box.get())
@@ -258,12 +265,13 @@ class DiscountPage:
                 foreground='white', borderwidth=2, date_pattern='dd-mm-yyyy')
         ngayBatDau_box.grid(row=0,column=7)
         ngayBatDau_box.bind("<<DateEntrySelected>>", validate_dates)
+        ngayBatDau_box.config(mindate=datetime.today().date())
 
         Label(nhapLieu_frame,text="Ngày kết thúc",bg="#f0f4f8").grid(row=0,column=8)
         ngayKetThuc_box = DateEntry(nhapLieu_frame, width=20, background='darkblue',
                 foreground='white', borderwidth=2, date_pattern='dd-mm-yyyy')
         ngayKetThuc_box.grid(row=0,column=9)
-        ngayKetThuc_box.config(mindate=ngayBatDau_box.get_date())    
+        ngayKetThuc_box.config(mindate=ngayBatDau_box.get_date()+timedelta(days=1))
         ngayKetThuc_box.bind("<<DateEntrySelected>>", validate_dates)
 
         for widget in nhapLieu_frame.winfo_children():
@@ -278,3 +286,6 @@ class DiscountPage:
         btn_suaChuongTrinhGiamGia.grid(row=0, column=1, padx=10)
         btn_xoaChuongTrinhGiamGia = Button(button_frame, text="Xóa chương trình giảm giá", width=20, height=2, bg="red", fg="white", font=("Arial", 10), command=xoaChuongTrinhGiamGia_click)
         btn_xoaChuongTrinhGiamGia.grid(row=0, column=2, padx=10)
+
+        if self.dsct.dsct[-1].trangThai != "Đã kết thúc":
+            btn_taoChuongTrinhGiamGia.config(state='disabled')

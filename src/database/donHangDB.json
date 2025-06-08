@@ -167,15 +167,47 @@
         "phiVanChuyen": 10000,
         "trongLuong": "1kg",
         "ghiChu": "Repo",
-        "ngayDat": "02-06-2025",
+        "ngayDat": "08-06-2025",
         "tongTien": 12500,
-        "trangThai": "Đã giao",
+        "trangThai": "Đang giao",
         "danhSachSanPham": [
             {
                 "ma_san_pham": "SP00001",
                 "ten_san_pham": "LOL",
                 "so_luong": 1,
                 "hinh_anh": "bin.png"
+            },
+            {
+                "ma_san_pham": "SP00002",
+                "ten_san_pham": "New",
+                "so_luong": 123,
+                "hinh_anh": "refresh-page-option (1).png"
+            }
+        ]
+    },
+    {
+        "maDonHang": "P00000008",
+        "tenKhachHang": "Phúc ",
+        "soDienThoai": "0888003346",
+        "tenNguoiGui": "Mỹ",
+        "soDienThoaiNguoiGui": "0776589801",
+        "diaChi": "469/32",
+        "phuong": "Xã Láng Dài",
+        "quan": "Huyện Long Đất",
+        "thanhPho": "Bà Rịa - Vũng Tàu",
+        "phuongThucThanhToan": "Tiền mặt",
+        "phiVanChuyen": 50000,
+        "trongLuong": "1kg",
+        "ghiChu": "",
+        "ngayDat": "08-06-2025",
+        "tongTien": 57200,
+        "trangThai": "Đang giao",
+        "danhSachSanPham": [
+            {
+                "ma_san_pham": "SP00001",
+                "ten_san_pham": "213",
+                "so_luong": 321,
+                "hinh_anh": "refresh-page-option (1).png"
             }
         ]
     }

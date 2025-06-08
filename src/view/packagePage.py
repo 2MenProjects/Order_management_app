@@ -25,8 +25,7 @@ class HomePage:
 
         danhSachDonHang = DanhSachDonHang()
         danhSachCuocPhi = DanhSachCuocPhi()
-        global danhSachSanPham
-        danhSachSanPham = DanhSachSanPham()
+        self.danhSachSanPham = DanhSachSanPham([])
         danhSachCuocPhi.tai_tu_file("src/database/cuocPhiDB.json")
         # Style
         style = ttk.Style()
@@ -81,7 +80,6 @@ class HomePage:
                     print("Lỗi:", ward_response.status_code, ward_response.text)
 
         def row_selection():
-            global danhSachSanPham
             selected_item = packageTable.focus()
             if selected_item:
                 item_values = packageTable.item(selected_item)['values']
@@ -123,7 +121,7 @@ class HomePage:
                     donViTinh_cb.set(chu)
                     for dh in danhSachDonHang.danhSachDonHang:
                         if dh.ma_don_hang == item_values[0]:
-                            danhSachSanPham = dh.danhSachSanPham
+                            self.danhSachSanPham = dh.danhSachSanPham
                     ghiChu_box.insert("1.0",item_values[10])
                     set_readonly_entry(tongTien_box,str(item_values[11]).replace(" VNĐ",""))
                     trangThai_box.set(item_values[12])
@@ -163,53 +161,58 @@ class HomePage:
             result = mb.askyesno("Thông báo","Bạn có chắc chắn muốn chỉnh sửa đơn hàng không ?")           
             if result == YES:
                 donHangEdited = danhSachDonHang.timKiemDonHangTheoMaDon(maDonHang_box.get())
-                if donHangEdited.trang_thai == "Đã giao":
-                    mb.showwarning("Cảnh báo","Đơn hàng đã giao không thể sửa")
-                    return
-                if validate_value():
-                    donHang = DonHang(maDonHang_box.get(),
-                                tenNguoiNhan_box.get(),
-                                soDienThoai_box.get(),
-                                tenNguoiGui_box.get(),
-                                soDienThoaiNguoiGui_box.get(),
-                                diaChi_box.get() + "," +phuong_box.get() +","+quan_box.get() +","+ thanhPho_box.get(),
-                                phuongThucThanhToan_box.get(),
-                                danhSachSanPham.dssp,
-                                trongLuong_box.get()+""+donViTinh_cb.get(),
-                                phiVanChuyen_box.get().replace(",",""),                                
-                                ghi_chu=ghiChu_box.get("1.0", END).strip(),
-                                tong_tien=int(tongTien_box.get().replace(",","")),                                                   
-                                trang_thai=trangThai_box.get())            
-                    if danhSachDonHang.suaDonHang(donHang):
-                        load_data()                          
-                        mb.showinfo("Thông báo","Chỉnh sửa đơn hàng thành công")            
+                if donHangEdited != None:
+                    if donHangEdited.trang_thai == "Đã giao":
+                        mb.showwarning("Cảnh báo","Đơn hàng đã giao không thể sửa")
+                        return
+                    if validate_value():
+                        donHang = DonHang(maDonHang_box.get(),
+                                    tenNguoiNhan_box.get(),
+                                    soDienThoai_box.get(),
+                                    tenNguoiGui_box.get(),
+                                    soDienThoaiNguoiGui_box.get(),
+                                    diaChi_box.get() + "," +phuong_box.get() +","+quan_box.get() +","+ thanhPho_box.get(),
+                                    phuongThucThanhToan_box.get(),
+                                    self.danhSachSanPham.dssp,
+                                    trongLuong_box.get()+""+donViTinh_cb.get(),
+                                    phiVanChuyen_box.get().replace(",",""),                                
+                                    ghi_chu=ghiChu_box.get("1.0", END).strip(),
+                                    tong_tien=int(tongTien_box.get().replace(",","")),                                                   
+                                    trang_thai=trangThai_box.get())            
+                        if danhSachDonHang.suaDonHang(donHang):
+                            load_data()                          
+                            mb.showinfo("Thông báo","Chỉnh sửa đơn hàng thành công")            
+                        else:
+                            mb.showerror("Lỗi","Chỉnh sửa đơn hàng thất bại")
                     else:
-                        mb.showerror("Lỗi","Chỉnh sửa đơn hàng thất bại")
+                        mb.showwarning("Cảnh báo","Dữ liệu không được để trống")
                 else:
-                    mb.showwarning("Cảnh báo","Dữ liệu không được để trống")
+                    mb.showerror("Lỗi","Không tìm thấy đơn hàng")
 
         def xoaDonHang_click():
             result = mb.askyesno("Thông báo","Bạn có chắc chắn muốn xóa đơn hàng không ?")
             if result == YES:
                 dh_xoa = danhSachDonHang.timKiemDonHangTheoMaDon(maDonHang_box.get())
-                if dh_xoa.trang_thai == "Đã giao":
-                    if danhSachDonHang.xoaDonHangTheoMaDon(maDonHang_box.get()):
-                        load_data()
-                        mb.showinfo("Thông báo","Xóa đơn hàng thành công")            
+                if dh_xoa != None:
+                    if dh_xoa.trang_thai == "Đã giao":
+                        if danhSachDonHang.xoaDonHangTheoMaDon(maDonHang_box.get()):
+                            load_data()
+                            mb.showinfo("Thông báo","Xóa đơn hàng thành công")            
+                        else:
+                            mb.showerror("Lỗi","Xóa đơn hàng thất bại")
                     else:
-                        mb.showerror("Lỗi","Xóa đơn hàng thất bại")
+                        mb.showwarning("Cảnh báo","Đơn hàng chưa được giao, xóa thất bại")
                 else:
-                    mb.showwarning("Cảnh báo","Đơn hàng chưa được giao, xóa thất bại")
+                    mb.showerror("Lỗi","Không tìm thấy đơn hàng")
 
         def is_number(char):
             return char.isdigit()
         
-        def clear_box():
-            global danhSachSanPham
+        def clear_box():            
             tenNguoiNhan_box.delete(0, END)
             soDienThoai_box.delete(0, END)
             tenNguoiGui_box.delete(0,END)
-            danhSachSanPham = DanhSachSanPham()
+            self.danhSachSanPham = DanhSachSanPham([])
             soDienThoaiNguoiGui_box.delete(0,END)
             diaChi_box.delete(0, END)
             set_readonly_entry(phiVanChuyen_box,"")
@@ -239,7 +242,7 @@ class HomePage:
                 return False
             if not(phuongThucThanhToan_box.get()):
                 return False
-            if len(danhSachSanPham.dssp) == 0:
+            if len(self.danhSachSanPham.dssp) == 0:
                 return False
             if not(trangThai_box.get()):
                 return False
@@ -260,7 +263,7 @@ class HomePage:
                                 soDienThoaiNguoiGui_box.get(),
                                 diaChi_box.get() + "," +phuong_box.get() +","+quan_box.get() +","+ thanhPho_box.get(),
                                 phuongThucThanhToan_box.get(),
-                                danhSachSanPham.dssp,
+                                self.danhSachSanPham.dssp,
                                 trongLuong_box.get()+""+donViTinh_cb.get(),
                                 phiVanChuyen_box.get().replace(",",""),
                                 ghi_chu=ghiChu_box.get("1.0", END).strip(),
@@ -298,10 +301,9 @@ class HomePage:
                                                         tongTien, item.trang_thai,), tags=(tag,))
 
         def load_data_sanPham():
-            global danhSachSanPham
             for item in sanPham_table.get_children():
                 sanPham_table.delete(item)    
-            for index, item in enumerate(danhSachSanPham.dssp):
+            for index, item in enumerate(self.danhSachSanPham.dssp):
                 tag = "evenrow" if index % 2 == 0 else "oddrow"   
                 sanPham_table.insert("", END, values=(item.ma_san_pham,item.ten_san_pham,item.so_luong,item.hinh_anh), tags=(tag,))
 
@@ -446,9 +448,8 @@ class HomePage:
                                                         tongTien, item.trang_thai,), tags=(tag,))
 
         def themSanPham():
-            clear_themSanPham_boxes()
-            global danhSachSanPham
-            set_readonly_entry(maSanPham_box,danhSachSanPham.taoMaSanPham())
+            clear_themSanPham_boxes()            
+            set_readonly_entry(maSanPham_box,self.danhSachSanPham.taoMaSanPham())
             btn_taoSanPham.config(text="Xác nhận",command=save_themSanPham)
 
         def validate_sanPham_value():
@@ -468,7 +469,7 @@ class HomePage:
                     soLuong_box.get(),
                     select_image.selected_image_name
                 )
-                result = danhSachSanPham.themSanPham(sanPham)
+                result = self.danhSachSanPham.themSanPham(sanPham)
                 if result:
                     if not kiem_tra_anh_da_ton_tai(select_image.selected_image_name):
                         luu_anh()
@@ -493,7 +494,7 @@ class HomePage:
                         soLuong_box.get(),
                         select_image.selected_image_name
                     )            
-                    if danhSachSanPham.suaSanPham(sanPham):
+                    if self.danhSachSanPham.suaSanPham(sanPham):
                         load_data_sanPham()
                         if not kiem_tra_anh_da_ton_tai(select_image.selected_image_name):
                             luu_anh()                            
@@ -506,7 +507,7 @@ class HomePage:
         def xoaSanPham():        
             result = mb.askyesno("Thông báo","Bạn có chắc chắn muốn xóa sản phẩm không ?",parent=themSanPham_win)
             if result == YES:
-                if danhSachSanPham.xoaSanPham(maSanPham_box.get()):
+                if self.danhSachSanPham.xoaSanPham(maSanPham_box.get()):
                     load_data_sanPham()
                     mb.showinfo("Thông báo","Xóa sản phẩm thành công",parent=themSanPham_win)            
                 else:
@@ -521,7 +522,7 @@ class HomePage:
             select_image.selected_image_path = ""
             select_image.selected_image_name = ""
 
-        def themSanPham_window():
+        def themSanPham_window():            
             global themSanPham_win
             themSanPham_win = Toplevel()
             themSanPham_win.configure(bg="#f8f8f8")

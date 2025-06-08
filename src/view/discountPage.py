@@ -86,28 +86,30 @@ class DiscountPage:
             result = mb.askyesno("Thông báo","Bạn có chắc chắn muốn chỉnh sửa chương trình giảm giá không ?")           
             if result == YES:
                 ct = self.dsct.timKiemChuongTrinhTheoMaGiam(maGiamGia_box.get())                
-                if ct.trangThai == "Chưa bắt đầu":
-                    if not(phanTramGiam_box.get()):
-                        mb.showwarning("Cảnh báo","Dữ liệu không được bỏ trống")
-                    else:
-                        ctEdited = ChuongTrinhGiamGia(maGiamGia_box.get(),
-                                                      phanTramGiam_box.get(),
-                                                      ngayBatDau_box.get_date().strftime("%d-%m-%Y"),
-                                                      ngayKetThuc_box.get_date().strftime("%d-%m-%Y"),
-                                                      )
-                        result = self.dsct.suaChuongTrinh(ctEdited)
-                        if result:
-                            load_data()
-                            mb.showinfo("Thông báo","Sửa chương trình giảm giá thành công")
+                if ct != None:
+                    if ct.trangThai == "Chưa bắt đầu":
+                        if not(phanTramGiam_box.get()):
+                            mb.showwarning("Cảnh báo","Dữ liệu không được bỏ trống")
                         else:
-                            mb.showerror("Lỗi","Sửa chương trình thất bại")
+                            ctEdited = ChuongTrinhGiamGia(maGiamGia_box.get(),
+                                                        phanTramGiam_box.get(),
+                                                        ngayBatDau_box.get_date().strftime("%d-%m-%Y"),
+                                                        ngayKetThuc_box.get_date().strftime("%d-%m-%Y"),
+                                                        )
+                            result = self.dsct.suaChuongTrinh(ctEdited)
+                            if result:
+                                load_data()
+                                mb.showinfo("Thông báo","Sửa chương trình giảm giá thành công")
+                            else:
+                                mb.showerror("Lỗi","Sửa chương trình thất bại")
+                    else:
+                        mb.showwarning("Cảnh báo","Chương trình đang bắt đầu hoặc đã kết thúc không thể chỉnh sửa")
                 else:
-                    mb.showwarning("Cảnh báo","Chương trình đang bắt đầu hoặc đã kết thúc không thể chỉnh sửa")
+                    mb.showerror("Lỗi","Không tìm thấy chương trình")
 
         def taoChuongTrinhGiamGia_click():
             clear_box()
-            set_readonly_entry(maGiamGia_box,self.dsct.taoMaChuongTrinh())
-            # ngay_bat_dau = datetime.strptime(self.dsct.dsct[-1].ngayBatDau, "%d-%m-%Y").date()
+            set_readonly_entry(maGiamGia_box,self.dsct.taoMaChuongTrinh())        
             ngay_ket_thuc = datetime.strptime(self.dsct.dsct[-1].ngayKetThuc, "%d-%m-%Y").date()
             ngay_hien_tai = datetime.today().date()
             if isinstance(ngay_ket_thuc, datetime):
@@ -143,17 +145,22 @@ class DiscountPage:
                 btn_taoChuongTrinhGiamGia.config(state='disabled')
 
         def xoaChuongTrinhGiamGia_click():
-            ct = self.dsct.timKiemChuongTrinhTheoMaGiam(maGiamGia_box.get())
-            if ct.trangThai == "Đã kết thúc":
-                result = self.dsct.xoaChuongTrinh(maGiamGia_box.get())
-                if result:
-                    load_data()
-                    mb.showinfo("Thông báo","Xóa chương trình giảm giá thành công")
+            result = mb.askyesno("Thông báo","Bạn có chắc chắn muốn xóa chương trình giảm giá không ?")
+            if result == YES:
+                ct = self.dsct.timKiemChuongTrinhTheoMaGiam(maGiamGia_box.get())
+                if ct != None:
+                    if ct.trangThai == "Đã kết thúc":
+                        result = self.dsct.xoaChuongTrinh(maGiamGia_box.get())
+                        if result:
+                            load_data()
+                            mb.showinfo("Thông báo","Xóa chương trình giảm giá thành công")
+                        else:
+                            mb.showerror("Lỗi","Xóa chương trình thất bại")
+                    else:
+                        mb.showwarning("Cảnh báo","Chương trình chưa kết thúc nên không thể xóa")
                 else:
-                    mb.showerror("Lỗi","Xóa chương trình thất bại")
-            else:
-                mb.showwarning("Cảnh báo","Chương trình chưa kết thúc nên không thể xóa")
-        
+                    mb.showerror("Lỗi","Không tìm thấy chương trình")
+
         def is_number(char):
             return char.isdigit()
         
